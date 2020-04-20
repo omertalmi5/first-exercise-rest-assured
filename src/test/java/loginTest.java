@@ -30,12 +30,12 @@ public class loginTest {
             .header("Content-Type", "application/json")
             .body(aRegisterDetails().build())
             .post("/register");
-    response.then().assertThat().statusCode(ConstParams.CREATED_CODE);
     assertThat(response.getStatusCode(), is(ConstParams.CREATED_CODE));
     String successCode = response.jsonPath().get("SuccessCode");
     response
         .then()
         .assertThat()
+        .statusCode(ConstParams.CREATED_CODE)
         .body("SuccessCode", equalTo(ConstParams.successCodeOfRegistration));
     assertThat(
         "Correct Success code was returned",
