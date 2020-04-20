@@ -10,15 +10,15 @@ import static Utils.StringUtils.getRandomString;
 
 @Builder(builderMethodName = "aRegisterDetails")
 public class RegisterContract implements Serializable {
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 5767787440650656765L;
 
-  @Default private String FirstName = getRandomString();
+  @Default public String FirstName = getRandomString();
 
-  @Default private String LastName = getRandomString();
+  @Default public String LastName = getRandomString();
 
-  @Default private String UserName = getRandomString();
+  @Default public String UserName = getRandomString();
 
-  @Default private String Password = "password1";
+  @Default public String Password = getRandomString();
 
-  @Default private String Email = "someuser@gmail.com";
+  @Default public String Email = getRandomString() + "@gmail.com";
 }
