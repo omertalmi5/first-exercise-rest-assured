@@ -1,24 +1,20 @@
 package Contracts;
 
-import Utils.StringUtils;
-import lombok.Builder;
-import lombok.Builder.Default;
+import lombok.AllArgsConstructor;
 
 import java.io.Serializable;
 
-import static Utils.StringUtils.getRandomString;
-
-@Builder(builderMethodName = "aRegisterDetails")
+@AllArgsConstructor
 public class RegisterContract implements Serializable {
   private static final long serialVersionUID = 5767787440650656765L;
 
-  @Default public String FirstName = getRandomString();
+  public String FirstName;
 
-  @Default public String LastName = getRandomString();
+  public String LastName;
 
-  @Default public String UserName = getRandomString();
+  public String UserName;
 
-  @Default public String Password = getRandomString();
+  public String Password;
 
-  @Default public String Email = getRandomString() + "@gmail.com";
+  public String Email;
 }

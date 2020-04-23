@@ -1,9 +1,8 @@
+import Contracts.RegisterContract;
 import Contracts.SuccessMessage;
 import io.restassured.response.Response;
-import org.json.simple.JSONObject;
 import org.junit.Test;
 
-import static Contracts.RegisterContract.aRegisterDetails;
 import static Utils.StringUtils.getRandomString;
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
@@ -15,21 +14,11 @@ public class loginTest {
 
   @Test
   public void test() {
-
-    JSONObject requestParams = new JSONObject();
-    requestParams.put("FirstName", getRandomString());
-    requestParams.put("LastName", getRandomString());
-    requestParams.put("UserName", getRandomString());
-    requestParams.put("Password", getRandomString());
-    requestParams.put("Email", getRandomString() + "@gmail.com");
-
-    // requestParams.toJSONString()
-    // aRegisterDetails().build()
     baseURI = "http://restapi.demoqa.com/customer";
     Response response =
         given()
             .header("Content-Type", "application/json")
-            .body(aRegisterDetails().build())
+            .body(new RegisterContract(getRandomString(), getRandomString(), getRandomString(), getRandomString(), getRandomString() + "@gmail.com"))
             .post("/register");
     SuccessMessage successMessage = response.as(SuccessMessage.class);
     assertThat(response.getStatusCode(), is(ConstParams.CREATED_CODE));
