@@ -1,3 +1,4 @@
+import Contracts.SuccessMessage;
 import io.restassured.response.Response;
 import org.json.simple.JSONObject;
 import org.junit.Test;
@@ -30,6 +31,7 @@ public class loginTest {
             .header("Content-Type", "application/json")
             .body(aRegisterDetails().build())
             .post("/register");
+    SuccessMessage successMessage = response.as(SuccessMessage.class);
     assertThat(response.getStatusCode(), is(ConstParams.CREATED_CODE));
     String successCode = response.jsonPath().get("SuccessCode");
     response
